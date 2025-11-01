@@ -34,7 +34,7 @@
           <h1 id="hero-title">Cursor Unlimited Usage Unlimited Creation</h1>
           <p class="lead">The Ultimate Programming Experience</p>
           <div class="actions">
-            <a class="btn" id="download-btn" href="https://discord.gg/dAVSekjRrc" target="_blank" rel="noopener">Contact
+            <a class="btn" id="contact-btn" href="https://discord.gg/dAVSekjRrc" target="_blank" rel="noopener">Contact
               Us <img class="icon-inline" src="discord-icon-svgrepo-com.svg" alt="Discord icon" /></a>
           </div>
         </div>
@@ -95,6 +95,45 @@ print(greet("World"))
   </footer>
 
   <script src="script.js"></script>
+  <!-- Google tag (gtag.js) event - delayed navigation helper -->
+  <script>
+    (function () {
+      const contactBtn = document.getElementById('contact-btn');
+      if (!contactBtn) {
+        return;
+      }
+
+      contactBtn.addEventListener('click', function (event) {
+        if (typeof gtag !== 'function') {
+          return;
+        }
+
+        event.preventDefault();
+        const url = contactBtn.href;
+        const targetAttr = contactBtn.getAttribute('target');
+
+        const navigate = function () {
+          if (typeof url !== 'string') {
+            return;
+          }
+
+          if (targetAttr === '_blank') {
+            const newWindow = window.open(url, '_blank');
+            if (newWindow) {
+              newWindow.opener = null;
+            }
+          } else {
+            window.location.href = url;
+          }
+        };
+
+        gtag('event', 'ads_conversion_PAGE_VIEW_1', {
+          'event_callback': navigate,
+          'event_timeout': 2000
+        });
+      });
+    })();
+  </script>
 </body>
 
 </html>
