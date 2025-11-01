@@ -192,8 +192,29 @@ body {
 
 /* How */
 .how { padding: 56px 0; border-bottom: 1px solid var(--line); }
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.steps li { background: #0e0e0e; border: 1px solid var(--line); padding: 16px; }
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: step;
+}
+.steps li {
+  position: relative;
+  background: #0e0e0e;
+  border: 1px solid var(--line);
+  padding: 16px 16px 16px 48px;
+}
+.steps li::before {
+  counter-increment: step;
+  content: counter(step) ".";
+  position: absolute;
+  left: 20px;
+  top: 16px;
+  font-weight: 700;
+}
 
 /* Download */
 .download { padding: 56px 0; border-bottom: 1px solid var(--line); text-align: center; }
