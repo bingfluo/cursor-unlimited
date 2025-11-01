@@ -12,8 +12,9 @@ if (navToggle && navList) {
 // Smooth scroll for in-page anchors
 document.addEventListener('click', (e) => {
   const target = e.target;
-  if (target instanceof HTMLAnchorElement && target.getAttribute('href')?.startsWith('#')) {
-    const id = target.getAttribute('href');
+  const anchor = target instanceof Element ? target.closest('a[href^="#"]') : null;
+  if (anchor instanceof HTMLAnchorElement) {
+    const id = anchor.getAttribute('href');
     const el = id ? document.querySelector(id) : null;
     if (el) {
       e.preventDefault();
